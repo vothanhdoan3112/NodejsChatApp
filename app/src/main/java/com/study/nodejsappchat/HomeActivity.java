@@ -1,6 +1,8 @@
 package com.study.nodejsappchat;
 
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -15,12 +17,15 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
+import com.study.nodejsappchat.entities.Contact;
 import com.study.nodejsappchat.entities.User;
 import com.study.nodejsappchat.fragments.FriendSearchFragment;
 import com.study.nodejsappchat.adapters.HomePagerAdapter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
@@ -53,6 +58,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 switch (position){
                     case 0:
+
                         tab.setText("Tin Nhắn");
                         tab.setIcon(R.drawable.stencils_ic_tab_messages);
                         break;

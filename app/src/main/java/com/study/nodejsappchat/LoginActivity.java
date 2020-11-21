@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnBack,btnNext;
     private EditText txtPhoneNum,txtPassword;
     private Socket mSocket;
-    private String URL = "http://10.0.2.2:3000";
+    private String URL = "http://192.168.1.111:3000";
     {
         try {
             mSocket = IO.socket(URL);
