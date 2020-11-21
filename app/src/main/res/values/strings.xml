@@ -1,0 +1,30 @@
+<resources>
+    <string name="URL_SERVER">http://10.0.2.2:3000</string>
+    <string name="app_name">Saza</string>
+    <string name="logo">Saza</string>
+    <string name="signIn">ĐĂNG NHẬP</string>
+    <string name="signUp">ĐĂNG KÝ</string>
+    <string name="signOut">Đăng xuất</string>
+    <string name="message">Tin nhắn</string>
+    <string name="phoneBook">Danh bạ</string>
+    <string name="Group">Nhóm</string>
+    <string name="todo">TODO</string>
+    <string name="reg">Đăng ký</string>
+    <string name="phoneNum">Số điện thoại</string>
+    <string name="password">Mật khẩu</string>
+    <string name="repassword">Nhập lại mật khẩu</string>
+    <string name="login">Đăng nhập</string>
+    <string name="PROCESSING">Đang thực hiện..</string>
+    <string name="enter_message">Tin nhắn</string>
+    <string name="send">Gửi</string>
+    <string name="ChatName">Friend Name</string>
+    <string name="pleasewait">Vui lòng đợi mã xác thực</string>
+    <string name="entercode">Nhập mã xác thực</string>
+    <string name="verify">Xác thực</string>
+    <string name="reSend">Gửi lại</string>
+    <string name="search_friend">Tìm kiếm bạn bè ...</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username">Tên người dùng</string>
+</resources>

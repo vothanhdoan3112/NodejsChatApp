@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <public type="drawable" name="stencils_ic_tab_friends" id="0x7f080d0e" />
+        <public type="drawable" name="stencils_ic_tab_groups" id="0x7f080d0f" />
+        <public type="drawable" name="stencils_ic_tab_join" id="0x7f080d10" />
+        <public type="drawable" name="stencils_ic_tab_messages" id="0x7f080d11" />
+        <public type="drawable" name="stencils_ic_tab_timeline" id="0x7f080d12" />
+
+</resources>
