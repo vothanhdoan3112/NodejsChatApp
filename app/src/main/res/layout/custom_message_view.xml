@@ -11,7 +11,7 @@
         android:layout_height="77dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         app:cardCornerRadius="50dp"
@@ -20,43 +20,41 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/img_AvataContact"
+            android:id="@+id/img_AvatarFriend"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/icn_def_avatar" />
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/txtContactName"
-        android:layout_width="143dp"
-        android:layout_height="23dp"
+        android:id="@+id/txtFriendName"
+        android:layout_width="230dp"
+        android:layout_height="22dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/txtPhoneNum"
+        app:layout_constraintBottom_toTopOf="@+id/txtMsgPreview"
         app:layout_constraintStart_toEndOf="@+id/myCardView"
         app:layout_constraintTop_toTopOf="@+id/myCardView"
         app:layout_constraintVertical_bias="0.4" />
 
     <TextView
-        android:id="@+id/txtPhoneNum"
-        android:layout_width="144dp"
-        android:layout_height="24dp"
+        android:id="@+id/txtMsgPreview"
+        android:layout_width="230dp"
+        android:layout_height="26dp"
         android:layout_marginBottom="12dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/myCardView"
-        app:layout_constraintStart_toStartOf="@+id/txtContactName" />
+        app:layout_constraintStart_toStartOf="@+id/txtFriendName" />
 
-    <Button
-        android:id="@+id/btn_AddFriend"
-        android:layout_width="97dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="16dp"
-        android:text="Thêm bạn"
-        app:layout_constraintBottom_toBottomOf="@+id/txtPhoneNum"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtContactName"
-        app:layout_constraintTop_toTopOf="@+id/txtContactName"
-        app:layout_constraintVertical_bias="0.0" />
+    <TextView
+        android:id="@+id/txt_time"
+        android:layout_width="57dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:text="12:26"
+        app:layout_constraintBottom_toBottomOf="@+id/txtMsgPreview"
+        app:layout_constraintStart_toEndOf="@+id/txtFriendName"
+        app:layout_constraintTop_toTopOf="@+id/txtFriendName" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

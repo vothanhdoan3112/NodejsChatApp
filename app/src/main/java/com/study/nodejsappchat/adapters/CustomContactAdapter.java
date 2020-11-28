@@ -3,11 +3,13 @@ package com.study.nodejsappchat.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
 import com.study.nodejsappchat.R;
 import com.study.nodejsappchat.entities.Contact;
 
@@ -32,6 +34,11 @@ public class CustomContactAdapter extends RecyclerView.Adapter<CustomContactAdap
         Contact mContact = contacts.get(position);
         holder.pName.setText(mContact.getName());
         holder.pNumber.setText(mContact.getNumber());
+        if (mContact.getPhoto() != null) {
+            Picasso.get().load(mContact.getPhoto()).into(holder.pAvatar);
+        } else {
+            holder.pAvatar.setImageResource(R.drawable.icn_def_avatar);
+        }
     }
 
     @Override
@@ -40,12 +47,14 @@ public class CustomContactAdapter extends RecyclerView.Adapter<CustomContactAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView pName,pNumber;
+        public TextView pName, pNumber;
+        public ImageView pAvatar;
         CustomContactAdapter customContactAdapter;
         public ViewHolder(@NonNull View itemView, CustomContactAdapter customContactAdapter) {
             super(itemView);
-            pName = itemView.findViewById(R.id.txtSettingName);
-            pNumber = itemView.findViewById(R.id.txtPnumber);
+            pName = itemView.findViewById(R.id.txtContactName);
+            pNumber = itemView.findViewById(R.id.txtPhoneNum);
+            pAvatar = itemView.findViewById(R.id.img_AvataContact);
             this.customContactAdapter = customContactAdapter;
         }
     }

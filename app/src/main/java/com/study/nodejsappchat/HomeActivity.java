@@ -50,21 +50,17 @@ public class HomeActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
         tabHome = findViewById(R.id.tabHome);
         btnMoreAndSearch = findViewById(R.id.btn_more);
-        try {
-            System.out.println(new JSONObject(new Gson().toJson(loginUser)));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, 100);
         }
 
-        viewPager.setAdapter(new HomePagerAdapter(this));
+        viewPager.setAdapter(new HomePagerAdapter(this, loginUser));
         tabLayoutMediator = new TabLayoutMediator(tabHome, viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                switch (position){
+                switch (position) {
                     case 0:
 
                         tab.setText("Tin Nhắn");
