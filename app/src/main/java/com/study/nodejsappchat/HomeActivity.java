@@ -1,6 +1,9 @@
 package com.study.nodejsappchat;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.KeyEvent;
@@ -11,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -50,6 +54,10 @@ public class HomeActivity extends AppCompatActivity {
             System.out.println(new JSONObject(new Gson().toJson(loginUser)));
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, 100);
         }
 
         viewPager.setAdapter(new HomePagerAdapter(this));

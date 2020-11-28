@@ -1,6 +1,7 @@
 package com.study.nodejsappchat.fragments;
 
 import android.Manifest;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -9,8 +10,11 @@ import android.os.Bundle;
 
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,89 +24,88 @@ import android.widget.Toast;
 
 import com.study.nodejsappchat.HomeActivity;
 import com.study.nodejsappchat.R;
+import com.study.nodejsappchat.adapters.CustomContactAdapter;
 import com.study.nodejsappchat.entities.Contact;
 
 import java.util.ArrayList;
 
 
 public class ContactFragment extends Fragment {
-    private Context context;
-    private ListView listContact;
-    private ArrayAdapter arrayAdapter;
+
+
+    private RecyclerView listContact;
+    private CustomContactAdapter customContactAdapter;
     private ArrayList<Contact> contacts;
     private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
 
-    public ContactFragment(Context context) {
-        this.context = context;
+    public ContactFragment() {
+
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                           int[] grantResults) {
-        if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showContacts();
-            } else {
-                Toast.makeText(context, "Until you grant the permission, we canot display the names", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
 
-    private void showContacts() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ActivityCompat.checkSelfPermission(getContext(),Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
-        } else {
-            listContact.findViewById(R.id.listContact);
-            contacts = getContacts();
-            contacts.add(new Contact("doan","0798369251"));
-            arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, contacts);
-            listContact.setAdapter(arrayAdapter);
-        }
-    }
+
 
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_contact, container, false);
+        contacts = new ArrayList<>();
+        listContact = view.findViewById(R.id.listContact);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ActivityCompat.checkSelfPermission(getActivity(),Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
+        } else {
+            contacts = getContacts();
+            customContactAdapter = new CustomContactAdapter(contacts);
+            listContact.setAdapter(customContactAdapter);
+            listContact.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        return inflater.inflate(R.layout.fragment_contact, container, false);
+        }
+        return view;
     }
 
     public ArrayList<Contact> getContacts(){
         ArrayList<Contact> contactList = new ArrayList<>();
-        Cursor cursor = getActivity().getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,null,null,null,
-                ContactsContract.CommonDataKinds.Phone.NUMBER);
-        if (cursor.getCount()>0){
-            while (cursor.moveToNext()){
-                String id  = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
-                String name  = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                String number  = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
+        ContentResolver cr = getActivity().getContentResolver();
+        Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
+                null, null, null, null);
 
-                if (number.length()>0){
-                    Cursor numCursor = getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,
-                            ContactsContract.CommonDataKinds.Phone.CONTACT_ID +"=?",new String []{id},null);
-                    if (numCursor.getCount()>0){
-                        while (numCursor.moveToNext()){
-                            String phoneNumberVal = numCursor.getString(numCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                            Contact contact = new Contact(name,phoneNumberVal);
-                            contactList.add(contact);
-                        }
+        if ((cur != null ? cur.getCount() : 0) > 0) {
+            while (cur != null && cur.moveToNext()) {
+                String id = cur.getString(
+                        cur.getColumnIndex(ContactsContract.Contacts._ID));
+                String name = cur.getString(cur.getColumnIndex(
+                        ContactsContract.Contacts.DISPLAY_NAME));
+
+                if (cur.getInt(cur.getColumnIndex(
+                        ContactsContract.Contacts.HAS_PHONE_NUMBER)) > 0) {
+                    Cursor pCur = cr.query(
+                            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                            null,
+                            ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
+                            new String[]{id}, null);
+                    while (pCur.moveToNext()) {
+                        String phoneNo = pCur.getString(pCur.getColumnIndex(
+                                ContactsContract.CommonDataKinds.Phone.NUMBER));
+                        Contact contact = new Contact(name,phoneNo);
+                        contactList.add(contact);
+
                     }
-                    numCursor.close();
+                    pCur.close();
                 }
             }
-        }else{
-            Toast.makeText(getContext(),"Khong co sdt trong danh ba",Toast.LENGTH_SHORT).show();
         }
-        cursor.close();
+        if(cur!=null){
+            cur.close();
+        }
         return contactList;
     }
+
 }

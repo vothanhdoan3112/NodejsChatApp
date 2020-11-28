@@ -901,4 +901,5 @@
     <dimen name="zad__iab_padding">5.0dip</dimen>
     <dimen name="zad__iab_vertical_padding">15.0dip</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

@@ -16,11 +16,11 @@ import com.study.nodejsappchat.fragments.UserFragment;
 import java.util.ArrayList;
 
 public class HomePagerAdapter extends FragmentStateAdapter {
-    private Context context;
+
 
     public HomePagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
-        this.context = fragmentActivity;
+
 
     }
 
@@ -33,7 +33,7 @@ public class HomePagerAdapter extends FragmentStateAdapter {
             case 1:
                 return new GroupFragment();
             case 2:
-                return new ContactFragment(context);
+                return new ContactFragment();
             default:
                 return new UserFragment();
         }

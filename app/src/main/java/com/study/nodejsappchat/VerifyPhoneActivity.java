@@ -42,7 +42,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     private EditText txtCode;
     private Button verify, reSend,btnBack;
     private User user;
-    private String URL = "http://10.0.2.2:3000";
+    private String URL = "http://192.168.1.111:3000";
 
 
     private Socket mSocket;

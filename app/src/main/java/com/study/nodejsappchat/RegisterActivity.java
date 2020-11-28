@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (phoneNum.isEmpty() ||phoneNum.length() > 10 || phoneNum.length() < 9) {
             return false;
         }
-        if (password.length() > 30 || password.length() < 8) {
+        if (password.length() > 30 || password.length() < 1) {
             return false;
         }
         if (!rePassword.equals(password)) {
