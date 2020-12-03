@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         contacts = new ArrayList<>();
         contacts.add(new Contact("doan","123465789"));
-        customContactAdapter = new CustomContactAdapter(contacts);
+        //customContactAdapter = new CustomContactAdapter(contacts);
         recyclerView = findViewById(R.id.rcv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(customContactAdapter);

@@ -19,12 +19,18 @@ public class User implements Serializable {
         this.password = password;
 
     }
+
     public User(String phoneNum, String userName, String password, List<User> listFriend, List<User> requestAddFr) {
         this.phoneNum = phoneNum;
         this.userName = userName;
         this.password = password;
         this.listFriend = listFriend;
         this.requestAddFr = requestAddFr;
+    }
+
+    public User(String phoneNum, String userName) {
+        this.phoneNum = phoneNum;
+        this.userName = userName;
     }
 
     public String getPhoneNum() {

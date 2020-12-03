@@ -27,6 +27,7 @@ import com.study.nodejsappchat.HomeActivity;
 import com.study.nodejsappchat.R;
 import com.study.nodejsappchat.adapters.CustomContactAdapter;
 import com.study.nodejsappchat.entities.Contact;
+import com.study.nodejsappchat.entities.User;
 
 import java.util.ArrayList;
 
@@ -35,13 +36,14 @@ public class ContactFragment extends Fragment {
 
 
     private RecyclerView listContact;
+    private User loginUser;
     private CustomContactAdapter customContactAdapter;
     private Button syncContact;
     private ArrayList<Contact> contacts;
     private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
 
-    public ContactFragment() {
-
+    public ContactFragment(User user) {
+        this.loginUser = user;
     }
 
     @Override
@@ -66,7 +68,7 @@ public class ContactFragment extends Fragment {
                 } else {
                     contacts.clear();
                     contacts = getContacts();
-                    customContactAdapter = new CustomContactAdapter(contacts);
+                    customContactAdapter = new CustomContactAdapter(contacts, loginUser);
                     listContact.setAdapter(customContactAdapter);
                     listContact.setLayoutManager(new LinearLayoutManager(getActivity()));
 

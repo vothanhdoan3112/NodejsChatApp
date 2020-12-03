@@ -33,7 +33,7 @@ public class HomePagerAdapter extends FragmentStateAdapter {
             case 1:
                 return new GroupFragment();
             case 2:
-                return new ContactFragment();
+                return new ContactFragment(logUser);
             default:
                 return new UserFragment(logUser);
         }

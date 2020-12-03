@@ -42,7 +42,8 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     private EditText txtCode;
     private Button verify, reSend,btnBack;
     private User user;
-    private String URL = "http://192.168.1.111:3000";
+    //    private String URL = "http://192.168.1.111:3000";
+    private String URL = "http://192.168.43.199:3000";
 
 
     private Socket mSocket;
@@ -147,14 +148,13 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     }
 
     private void sendVerificationCode(String phoneNum) {
-
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 "+84" + phoneNum,
                 60,
                 TimeUnit.SECONDS,
                 TaskExecutors.MAIN_THREAD,
                 mCallBack);
-}
+    }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks
             mCallBack = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {

@@ -22,10 +22,12 @@ import org.json.JSONObject;
 import java.net.URISyntaxException;
 
 public class LoginActivity extends AppCompatActivity {
-    private Button btnBack,btnNext;
-    private EditText txtPhoneNum,txtPassword;
+    private Button btnBack, btnNext;
+    private EditText txtPhoneNum, txtPassword;
     private Socket mSocket;
-    private String URL = "http://192.168.1.111:3000";
+    private String URL = "http://192.168.43.199:3000";
+
+    //    private String URL = "http://192.168.1.111:3000";
     {
         try {
             mSocket = IO.socket(URL);
@@ -33,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
