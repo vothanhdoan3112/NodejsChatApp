@@ -2,7 +2,6 @@ package com.study.nodejsappchat;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +13,6 @@ import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.study.nodejsappchat.entities.User;
 
 import org.json.JSONObject;
@@ -25,7 +23,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnBack, btnNext;
     private EditText txtPhoneNum, txtPassword;
     private Socket mSocket;
-    private String URL = "http://192.168.43.199:3000";
+    private String URL = "http://sazachat.cf:3001";
+//    private String URL = "http://10.0.2.2:3000";
 
     //    private String URL = "http://192.168.1.111:3000";
     {
@@ -72,8 +71,8 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this,"ok",Toast.LENGTH_LONG).show();
                                 if (JsonUser !=null) {
                                     User loginUser = new Gson().fromJson(JsonUser.toString(),User.class);
-                                   // System.out.println(JsonUser);
-                                    Toast.makeText(LoginActivity.this,"Đăng nhập thành công",Toast.LENGTH_SHORT).show();
+                                    System.out.println(JsonUser);
+                                    Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                     intent.putExtra("logUser",loginUser);
                                     startActivity(intent);

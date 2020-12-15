@@ -1,7 +1,5 @@
 package com.study.nodejsappchat.entities;
 
-import androidx.annotation.NonNull;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,6 +10,7 @@ public class User implements Serializable {
     private String password;
     private List<User>  listFriend;
     private List<User> requestAddFr;
+    private List<User> listSendRequest;
 
     public User(String phoneNum, String userName, String password) {
         this.phoneNum = phoneNum;
@@ -20,12 +19,13 @@ public class User implements Serializable {
 
     }
 
-    public User(String phoneNum, String userName, String password, List<User> listFriend, List<User> requestAddFr) {
+    public User(String phoneNum, String userName, String password, List<User> listFriend, List<User> requestAddFr, List<User> listSendRequest) {
         this.phoneNum = phoneNum;
         this.userName = userName;
         this.password = password;
         this.listFriend = listFriend;
         this.requestAddFr = requestAddFr;
+        this.listSendRequest = listSendRequest;
     }
 
     public User(String phoneNum, String userName) {
@@ -73,5 +73,15 @@ public class User implements Serializable {
         this.requestAddFr = requestAddFr;
     }
 
-  
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public List<User> getListSendRequest() {
+        return listSendRequest;
+    }
+
+    public void setListSendRequest(List<User> listSendRequest) {
+        this.listSendRequest = listSendRequest;
+    }
 }

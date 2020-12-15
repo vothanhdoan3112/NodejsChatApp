@@ -43,7 +43,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     private Button verify, reSend,btnBack;
     private User user;
     //    private String URL = "http://192.168.1.111:3000";
-    private String URL = "http://192.168.43.199:3000";
+    private String URL = "http://192.168.55.222:3000";
 
 
     private Socket mSocket;
@@ -112,7 +112,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             try {
-                                mSocket.emit("regAcc", new JSONObject(new Gson().toJson(user)));
+                                mSocket.emit("create-new-account", new JSONObject(new Gson().toJson(user)));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

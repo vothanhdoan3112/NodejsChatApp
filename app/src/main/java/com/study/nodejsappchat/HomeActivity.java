@@ -44,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         loginUser = (User) getIntent().getSerializableExtra("logUser");
+       // loginUser = new User("0798369251","Doan");
 
         friendSearchFragment = new FriendSearchFragment();
         txtSearchFriends = findViewById(R.id.txtSearchFriends);
@@ -62,7 +63,6 @@ public class HomeActivity extends AppCompatActivity {
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 switch (position) {
                     case 0:
-
                         tab.setText("Tin Nhắn");
                         tab.setIcon(R.drawable.stencils_ic_tab_messages);
                         break;
